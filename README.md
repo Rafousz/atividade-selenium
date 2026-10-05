@@ -1,38 +1,39 @@
-# Repositório com os exemplos usados na aula sobre Selenium
+# Requisitos
 
-Sequência das branches
+- Java JDK 11 ou superior (versão utilizada: 11.0.2).
+- Apache Maven 3.10.0 (versão utilizada).
+- Selenium 4.20.0.
+- JUnit Jupiter 5.6.2.
+- Google Chrome instalado.
+- `JAVA_HOME` configurado para o JDK e Maven disponível no `PATH`.
+- Acesso à internet para acessar o site e baixar dependências e ChromeDriver.
 
-1. aula_google
-2. testa_busca
-3. testa_usuario
-4. testa_usuario_po
+Selenium e JUnit são baixados pelo Maven. O ChromeDriver é gerenciado pelo Selenium.
 
-## Executar o teste
+# Comandos
 
-Requisitos: JDK 11 ou superior, Maven e Google Chrome instalado. O `JAVA_HOME`
-deve apontar para o JDK. Confira o Java utilizado pelo Maven com `mvn -version`.
-O Selenium Manager resolve o ChromeDriver automaticamente; a primeira execução
-precisa de acesso à internet para baixar as dependências e o driver.
+Execute os comandos na pasta do projeto.
 
-Na pasta do projeto, execute:
+Verificar o ambiente:
+
+```powershell
+mvn -version
+```
+
+Executar todos os testes:
 
 ```powershell
 mvn clean test
 ```
 
-O teste abre o Google, verifica o título e o campo de busca, digita `Selenium`
-e fecha o navegador ao terminar. O resultado esperado é `Tests run: 1,
-Failures: 0, Errors: 0, Skipped: 0` e `BUILD SUCCESS`.
-
-Para executar sem mostrar a janela do Chrome:
+Executar apenas os testes de login:
 
 ```powershell
-mvn test -Dheadless=true
+mvn test -Dtest=TestLoginUsuario
 ```
 
-Os relatórios ficam em `target/surefire-reports`. Se houver erro em classes
-compiladas anteriormente pela IDE, use `mvn clean test` para recompilar.
-A configuração `.mvn/jvm.config` usa TLS 1.2 para evitar a falha de download
-`No PSK available. Unable to resume.` observada com o JDK 11.0.2 instalado.
-O teste depende de acesso ao Google; indisponibilidade, CAPTCHA ou mudanças
-na página podem causar falha.
+Executar apenas os testes de cadastro:
+
+```powershell
+mvn test -Dtest=TestRegistrarUsuario
+```
